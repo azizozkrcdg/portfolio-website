@@ -1,0 +1,160 @@
+<%- include("partials/_header.ejs") %>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <%- include("partials/sidebar.ejs") %>
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+              <%- include("partials/_navbar.ejs") %>
+
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="col-lg-12 mb-4">
+
+                            <!-- Project Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6 class="m-0 font-weight-bold text-primary">Social Media</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a data-target="#addProject" data-toggle="modal" class="btn btn-sm btn-outline-success float-right">
+                                                <i class="bi bi-plus">
+                                                    New Social Media
+                                                </i>    
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Platform</th>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Url</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        <% let index = 1 %>
+
+                                        <% for(let i = 0; i < socialMedias.length; i++) { %>
+                                        <tr>
+                                            <th scope="row"><%= index %></th>
+                                            <td><%= socialMedias[i].platform %></td>
+                                            <td><%= socialMedias[i].username %></td>
+                                            <td><a href="<%= socialMedias[i].url %>"><%= socialMedias[i].url %></a></td>
+                                            <td>
+                                                <form action="/admin/socialMedia/<%=socialMedias[i].id %>" method="post">
+                                                    <button type="submit" class="bi btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                            <% index++ %>
+                                        <% } %>
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+               <!-- MODAL -->
+
+               <div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New Social Media</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="close" >
+                                <span aria-hidden="true">&times;</span>
+                            </button> 
+                        </div>
+                        <div class="modal-body">
+                            <form action="/admin/socialMedia" method="POST">
+
+                                <!-- start form -->
+                                <div class="form-group">
+                                    <label>Platform</label>
+                                    <input type="text" name="platform" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" name="username" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Url</label>
+                                    <input type="text" name="url" class="form-control">
+                                </div>
+
+        
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-outline-success">Save</button>
+                                </div>
+                            </form>
+
+                            <!-- end form -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- END-MODAL -->
+
+         <%- include("partials/_footer.ejs") %> 
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+   <%- include("partials/_script.ejs") %>
+
+
+
+</body>
+
+</html>

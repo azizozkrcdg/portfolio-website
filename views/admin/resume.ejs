@@ -1,0 +1,172 @@
+<%- include("partials/_header.ejs") %>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <%- include("partials/sidebar.ejs") %>
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+              <%- include("partials/_navbar.ejs") %>
+
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="col-lg-12 mb-4">
+
+                            <!-- Project Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6 class="m-0 font-weight-bold text-primary">Resume</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a data-target="#addResume" data-toggle="modal" class="btn btn-sm btn-outline-success float-right">
+                                                <i class="bi bi-plus">
+                                                    New Resume
+                                                </i>    
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th>Job Title</th>
+                                            <th>Company</th>
+                                            <th>Started Year</th>
+                                            <th>End Year</th>
+                                            <th>About Job</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% let index = 1 %>
+                                        <% for(let i = 0; i < resumes.length; i++) { %>
+                                            <tr>
+                                                <th scope="row"><%= index++ %></th> <%= index %></th>
+                                              <td><%= resumes[i].jobTitle %></td>
+                                              <td><%= resumes[i].company %></td>
+                                              <td><%= resumes[i].startedYear %></td>
+                                              <td><%= resumes[i].endYear %></td>
+                                              <td><%= resumes[i].description %></td>
+                                              <td>
+                                                <form action="/admin/resume/<%=resumes[i].id %>" method="post">
+                                                    <button type="submit" class="bi btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            </tr>
+                                         
+                                        <% } %>
+                                      </tbody>
+                                      
+                                      
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- MODAL -->
+
+            <div class="modal fade" id="addResume" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New Resume</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="close" >
+                                <span aria-hidden="true">&times;</span>
+                            </button> 
+                        </div>
+                        <div class="modal-body">
+                            <form action="/admin/resume" method="POST">
+
+                                <!-- start form -->
+
+                                <div class="form-group">
+                                    <label>Job Title</label>
+                                    <input type="text" name="jobTitle" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Company</label>
+                                    <input type="text" name="company" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Job Started Year</label>
+                                    <input type="text" name="startedYear" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Job End Year</label>
+                                    <input type="text" name="endYear" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>About Job</label>
+                                    <textarea name="description" class="form-control"></textarea>
+                                    <!-- <input type="text" name="projectDescription" class="form-control"> -->
+                                </div>
+
+                               
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-outline-success">Save</button>
+                                </div>
+                            </form>
+
+                            <!-- end form -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- END-MODAL -->
+
+         <%- include("partials/_footer.ejs") %> 
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+   <%- include("partials/_script.ejs") %>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!-- views/blogDetail.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= blog.title %></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container mt-5">
+    <a href="/blogs" class="btn btn-outline-secondary mb-4">&larr; Back to Blogs</a>
+
+    <h1 class="mb-3"><%= blog.title %></h1>
+
+    <% if (blog.summary) { %>
+      <p class="text-muted"><%= blog.summary %></p>
+    <% } %>
+
+    <hr>
+
+    <div>
+      <p><%- blog.content %></p> 
+    </div>
+  </div>
+  <div class="float-right mr-5 mb-3 mt-3">
+    <i class="bi bi-book"><%= blog.reads %> defa okundu</i>
+  </div>
+
+
+  
+</body>
+</html>
