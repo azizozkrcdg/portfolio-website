@@ -1,5 +1,5 @@
 import express from "express";
-import pageRoute from "./pageRoute.js";
+import dashboardRoute from "./dashboardRoute.js";
 import aboutRoute from "./aboutRoute.js";
 import projectRoute from "./projectRoute.js";
 import certificateRoute from "./certificateRoute.js";
@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.use(isAuthenticated);
 
-router.use("/", pageRoute);
+router.use("/", dashboardRoute);
 router.use("/about", aboutRoute);
 router.use("/projects", projectRoute);
 router.use("/certificate", certificateRoute);

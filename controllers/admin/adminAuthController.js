@@ -15,7 +15,7 @@ const login = async (req, res) => {
   }
 
   req.session.adminId = admin._id;
-  res.redirect("/admin/about");
+  res.redirect("/admin/");
 };
 
 const createAdmin = async (req, res) => {
