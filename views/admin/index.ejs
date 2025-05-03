@@ -102,22 +102,110 @@
                                     <div class="card-body">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div>
-                                        <h6 class="text-warning fw-bold">Toplam Admin</h6>
-                                        <h3><%= admins.length %></h3>
+                                            <h6 class="text-warning fw-bold">Toplam Admin</h6>
+                                            <h3><%= admins.length %></h3>
                                         <div class="progress mt-2" style="height: 5px;">
                                             <div class="progress-bar bg-warning"></div>
                                         </div>
                                         </div>
+                                            <div>
+                                                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#createAdmin">Admin Ekle</button>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#getAdmin">Adminleri Gör</button>
+                                            </div>
                                         <div class="text-warning fs-1">
-                                        <i class="bi bi-journal-richtext"></i>
+                                            <i class="bi bi-people"></i>
                                         </div>
                                     </div>
                                     </div>
                                 </div>
-                                </div>
-
+                            </div>
                         </div>
                         </div>   
+
+                                        <!-- getAdmin modal -->
+                                  
+                <div class="modal fade" id="getAdmin" tabindex="-1" aria-labelledby="adminListModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="adminListModalLabel">Admin Listesi</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                        </div>
+                        
+                        <div class="modal-body">
+                        <% if (admins && admins.length > 0) { %>
+                            <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Kullanıcı Adı</th>
+                                    <th>Oluşturulma Tarihi</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <% admins.forEach((admin, index) => { %>
+                                    <tr>
+                                    <td><%= index + 1 %></td>
+                                    <td><%= admin.username %></td>
+                                    <td><%= admin.createdAt.toLocaleDateString("tr-TR") %></td>
+                                    <td>
+                                       <form action="/admin/login/delete/<%= admin.id %>" method="POST">
+                                        <button type="submit" class="btn btn-outline-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                       </form>
+                                    </td>
+                                    </tr>
+                                <% }) %>
+
+                                </tbody>
+                            </table>
+                            </div>
+                        <% } else { %>
+                            <p class="text-muted">Hiç admin bulunamadı.</p>
+                        <% } %>
+                        </div>
+                        
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                        </div>
+                        
+                    </div>
+                    </div>
+                </div>
+  
+
+
+                        <!-- Create Admin Modal -->
+                    <div class="modal fade" id="createAdmin" tabindex="-1" aria-labelledby="createAdminModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <form action="/admin/login/register" method="POST" class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="createAdminModalLabel">Yeni Admin Ekle</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Username</label>
+                                    <input type="text" class="form-control" name="username" id="username" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" name="password" id="password" required>
+                                </div>
+                           
+                            </div>
+                            <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+  
                 </div>
                 </div>
                 <!-- /.container-fluid -->
