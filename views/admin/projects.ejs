@@ -33,12 +33,12 @@
                             
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Projeler</h6>
                                         </div>
                                         <div class="col-md-6">
                                             <a data-target="#addProject" data-toggle="modal" class="btn btn-sm btn-outline-success float-right">
                                                 <i class="bi bi-plus">
-                                                    New Project
+                                                    Yeni Proje
                                                 </i>    
                                             </a>
                                         </div>
@@ -48,9 +48,9 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Name</th>
+                                            <th scope="col">Proje Adı</th>
                                             <th scope="col">URL</th>
-                                            <th scope="col">Description</th>
+                                            <th scope="col">Açıklama</th>
                                         </tr>
                                     </thead>
                                     <% for(let i = 0; i < projects.length; i++) { %>
@@ -93,7 +93,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">New Project</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Yeni Proje</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="close" >
                                     <span aria-hidden="true">&times;</span>
                                 </button> 
@@ -101,25 +101,25 @@
                             <div class="modal-body">
                                 <form action="/admin/projects" method="POST">
                                     <div class="form-group">
-                                        <label>Project Name</label>
+                                        <label>Proje Adı</label>
                                         <input type="text" name="projectName" class="form-control">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Project URL</label>
+                                        <label>Proje Linki</label>
                                         <input type="text" name="projectUrl" class="form-control">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Project Description</label>
+                                        <label>Proje Açıklaması</label>
                                         <textarea name="projectDescription" class="form-control"></textarea>
                                         <!-- <input type="text" name="projectDescription" class="form-control"> -->
                                     </div>
     
                                    
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-outline-success">Save</button>
+                                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Kapat</button>
+                                        <button type="submit" class="btn btn-outline-success">Kaydet</button>
                                     </div>
                                 </form>
     

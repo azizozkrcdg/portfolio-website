@@ -34,12 +34,12 @@
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h6 class="m-0 font-weight-bold text-primary">Certificates</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Sertifikalar</h6>
                                         </div>
                                         <div class="col-md-6">
                                             <a data-target="#addCertificate" data-toggle="modal" class="btn btn-sm btn-outline-success float-right">
                                                 <i class="bi bi-plus">
-                                                    New Certificate
+                                                    Yeni Sertifika Ekle
                                                 </i>    
                                             </a>
                                         </div>
@@ -49,9 +49,9 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Image</th>
-                                            <th scope="col">Type</th>
+                                            <th scope="col">Sertifika Adı</th>
+                                            <th scope="col">Sertifika Resmi</th>
+                                            <th scope="col">Sertifika Tipi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -103,7 +103,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New Certificate</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Yeni Sertifika</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="close" >
                                 <span aria-hidden="true">&times;</span>
                             </button> 
@@ -111,26 +111,26 @@
                         <div class="modal-body">
                             <form action="/admin/certificate" method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label>Certificate Name</label>
+                                    <label>Sertifika Adı</label>
                                     <input type="text" name="certificateName" class="form-control">
                                 </div>
 
                                 <div class="form-group">
-                                    <label">Certificate Image</label>
+                                    <label">Sertifika Resmi</label>
                                     <input type="file" name="certificateImage" class="form-control-file">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Filter</label>
+                                    <label>Sertifika Tipi</label>
                                     <select name="certificateType" class="form-select">
-                                        <option value="success">Achievement</option>
-                                        <option value="part">Participation</option>
+                                        <option value="success">Başarı</option>
+                                        <option value="part">Katılım</option>
                                     </select>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-success">Save</button>
-                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-outline-success">Kaydet</button>
+                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Kapat</button>
                                 </div>
                             </form>
 
