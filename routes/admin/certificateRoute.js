@@ -13,4 +13,8 @@ router.post("/", upload.single("certificateImage"), certificateController.create
 // Sertifika sil
 router.delete("/:id", certificateController.deleteCertificate);
 
+//sertifika güncelle
+router.put("/:id", upload.single("certificateImage"), certificateController.updateCertificate);
+
+
 export default router;

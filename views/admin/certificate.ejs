@@ -43,6 +43,7 @@
                                                 </i>    
                                             </a>
                                         </div>
+
                                     </div>
 
                                 </div>
@@ -66,38 +67,33 @@
                                                     </div>
                                                 </td>
                                                 <td><%= certificate.certificateType %></td>
+                                                <!-- sertifika güncelle -->
                                                 <td>
+                                                   <div class="d-flex gap-2">
+                                                    <div class="col-md-6">
+                                                        <a data-target="#updateCertificate" data-toggle="modal" class="btn btn-sm btn-outline-success float-right">
+                                                            <i class="bi bi-pencil-square"></i>    
+                                                        </a>
+                                                    </div>
+                                                    <!-- sertifika sil -->
                                                     <form action="/admin/certificate/<%= certificate._id %>" method="POST" id="deleteForm<%= certificate._id %>">
                                                         <button type="button" class="bi btn btn-sm btn-outline-danger" onclick="deleteCertificate('<%= certificate._id %>')">
                                                             <i class="bi bi-trash"></i>
                                                         </button>
                                                     </form>
+                                                   </div>
                                                 </td>
                                             </tr>
                                         <% }) %>
                                     </tbody>
-                                </table>
-                                 
-                                
-                                
-                                
-                            </div>
-                            
-
+                                </table>                                                        
+                            </div>                          
                         </div>
-
-
-
-
                     </div>
-
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
-
-            <!-- MODAL -->
+           
+            <!-- MODAL sertifika ekle-->
 
             <div class="modal fade" id="addCertificate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -143,6 +139,56 @@
             </div>
             <!-- END-MODAL -->
 
+            <!-- MODAL sertifika güncelle -->
+            <% certificates.forEach(certificate => { %>
+              
+                <!-- Güncelleme Modalı -->
+                <div class="modal fade" id="updateCertificate" tabindex="-1" aria-labelledby="editModalLabel<%= certificate._id %>" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <form action="/admin/certificate/<%= certificate._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="editModalLabel<%= certificate._id %>">Sertifikayı Güncelle</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Sertifika Adı -->
+                          <div class="mb-3">
+                            <label class="form-label">Sertifika Adı</label>
+                            <input type="text" name="certificateName" class="form-control" value="<%= certificate.certificateName %>">
+                          </div>
+              
+                          <!-- Sertifika Türü -->
+                          <div class="mb-3">
+                            <label class="form-label">Sertifika Türü</label>
+                            <input type="text" name="certificateType" class="form-control" value="<%= certificate.certificateType %>">
+                          </div>
+              
+                          <!-- Mevcut Görsel -->
+                          <div class="mb-3">
+                            <label class="form-label">Mevcut Görsel</label><br>
+                            <img src="<%= certificate.certificateImage %>" alt="Mevcut Sertifika Görseli" width="150">
+                          </div>
+              
+                          <!-- Yeni Görsel Yükleme -->
+                          <div class="mb-3">
+                            <label class="form-label">Yeni Görsel Yükle (İsteğe Bağlı)</label>
+                            <input type="file" name="certificateImage" class="form-control">
+                          </div>
+                        </div>
+              
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                          <button type="submit" class="btn btn-primary">Kaydet</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              <% }) %>
+              
+              
+            <!-- END-MODAL -->
 
          <%- include("partials/_footer.ejs") %> 
 

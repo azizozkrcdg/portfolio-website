@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import session from "express-session";
+import methodOverride from "method-override";
 import { connectDB } from "./config/db.js";
 import indexRoute from "./routes/admin/indexRoute.js";
 import siteRoute from "./routes/site/siteRoute.js";
@@ -18,6 +19,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
+app.use(methodOverride("_method"));
 
 
 app.use(express.static("public"));
