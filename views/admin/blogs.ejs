@@ -110,12 +110,12 @@
                         </button>
                       </div>
               
-                      <div class="modal-body">
+                      <div class="modal-body" >
                         <% if (blogs[i].summary) { %>
                           <p class="text-muted"><%= blogs[i].summary %></p>
                         <% } %>
                         <hr>
-                        <p><%= blogs[i].content %></p>
+                        <p><%- blogs[i].content %></p>
                       </div>
               
                       <div class="modal-footer">
@@ -128,13 +128,7 @@
               <% } %>
 
 
-
-<!-- BLOG EKLEME MODALI -->
-
-
-
-
-<!-- Modal -->
+<!-- blog ekleme Modal -->
 <div class="modal fade" id="addBlog" tabindex="-1" aria-labelledby="addBlogModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

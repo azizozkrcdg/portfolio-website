@@ -153,7 +153,7 @@
                                     <td><%= admin.username %></td>
                                     <td><%= admin.createdAt.toLocaleDateString("tr-TR") %></td>
                                     <td>
-                                       <form action="/admin/login/delete/<%= admin.id %>" method="POST">
+                                       <form action="/admin/auth/delete/<%= admin.id %>" method="POST">
                                         <button type="submit" class="btn btn-outline-danger">
                                             <i class="bi bi-trash"></i>
                                         </button>
@@ -183,7 +183,7 @@
                         <!-- Create Admin Modal -->
                     <div class="modal fade" id="createAdmin" tabindex="-1" aria-labelledby="createAdminModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                        <form action="/admin/login/register" method="POST" class="modal-content">
+                        <form action="/admin/auth/register" method="POST" class="modal-content">
                             <div class="modal-header">
                             <h5 class="modal-title" id="createAdminModalLabel">Yeni Admin Ekle</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>

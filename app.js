@@ -26,13 +26,13 @@ app.use("/uploads", express.static("public/uploads"));
 app.set("view engine", "ejs");
 
 //admin index routes
-app.use("/admin/login", adminAuthRoute);
+app.use("/admin/auth", adminAuthRoute);
 app.use("/admin", indexRoute);
 app.use("/", siteRoute);
 
 const port = process.env.PORT;
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0',() => {
   console.log(`Server ${port} portunda çalıştı.`);
   connectDB();
 });

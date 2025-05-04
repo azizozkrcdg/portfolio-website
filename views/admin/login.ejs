@@ -20,11 +20,12 @@
             </div>
         <% } %>
 
-        <form action="/admin/login" method="POST">
+        <form action="/admin/auth/login" method="POST">
             <div class="mb-3">
                 <label for="username" class="form-label">Kullanıcı Adı</label>
                 <input type="text" name="username" id="username" class="form-control" required>
             </div>
+            
             <div class="mb-3">
                 <label for="password" class="form-label">Şifre</label>
                 <input type="password" name="password" id="password" class="form-control" required>

@@ -4,8 +4,8 @@ import express from "express";
 const router = express.Router();
 
 // admin login routes
-router.get("/", adminAuthController.getLoginPage);
-router.post("/", adminAuthController.login);
+router.get("/login", adminAuthController.getLoginPage);
+router.post("/login", adminAuthController.login);
 router.post("/register", adminAuthController.createAdmin);
 router.get("/logout", adminAuthController.logout);
 router.post("/delete/:id", adminAuthController.deleteAdmin);

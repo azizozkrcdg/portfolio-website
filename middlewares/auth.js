@@ -1,6 +1,14 @@
 const isAuthenticated = (req, res, next) => {
-  if (req.session.adminId) return next();
-  res.redirect("/admin/login");
-}
+  const isLoggedIn = req.session && req.session.adminId;
+
+  if (isLoggedIn) {
+    return next();
+  }
+
+  // İsteğe bağlı olarak geri dönüş URL'si eklenebilir
+  req.session.redirectTo = req.originalUrl;
+
+  return res.redirect("/admin/auth/login");
+};
 
 export default isAuthenticated;
