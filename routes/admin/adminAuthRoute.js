@@ -9,5 +9,6 @@ router.post("/login", adminAuthController.login);
 router.post("/register", adminAuthController.createAdmin);
 router.get("/logout", adminAuthController.logout);
 router.post("/delete/:id", adminAuthController.deleteAdmin);
+router.post("/reset-password", adminAuthController.adminPasswordReset);
 
 export default router;
