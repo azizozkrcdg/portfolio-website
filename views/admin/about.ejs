@@ -1,5 +1,6 @@
 <%- include("partials/_header.ejs") %>
-
+  <!-- CKEditor 5 Classic Build (CDN) -->
+  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -30,15 +31,15 @@
                             <!-- Project Card Example -->
                             <div class="card shadow mb-4">
                               <div>
-                                  <button class="btn btn-primary btn-sm w-25 mt-3 float-right" data-bs-toggle="modal" data-bs-target="#addAbout">
-                                      Yazı Ekle
+                                  <button class="btn btn-success btn-sm w-15 mt-3 mr-5 float-right" data-bs-toggle="modal" data-bs-target="#addAbout">
+                                      Yazıyı Güncelle  
                                     </button>
-                               
+                                
                               </div>
                                     <div class="mx-auto mt-3">
                                       <h3>HAKKIMDA</h3>
                                     </div>
-                                    <textarea class="form-control" name="aboutText" rows="5"><%= about.aboutText %>
+                                    <textarea class="form-control" name="aboutText" rows="5"><%- about.aboutText %>
                                     </textarea>
                             </div>
 
@@ -60,25 +61,30 @@
             <!-- Mevcut yazıyı gösteren alan -->
  
   
-  <!-- Modal -->
-  <div class="modal fade" id="addAbout" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+  <!-- Modal yazı ekle -->
+  <div class="modal fade" id="addAbout" tabindex="-1" aria-labelledby="addBlogModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <form class="modal-content" method="POST" action="/admin/about">
+      <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="aboutModalLabel">About Yazısı Ekle</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+          <h5 class="modal-title" id="addBlogModalLabel">Yazıyı Güncelle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <textarea class="form-control" name="aboutText" rows="5"></textarea>
+          <form action="/admin/about/update" method="POST">
+
+            <div class="mb-3">
+              <label for="aboutText" class="form-label">İçerik</label>
+              <textarea name="aboutText" id="editor" rows="10" class="form-control"><%- about.aboutText%></textarea>
+            </div>
+  
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+          </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-          <button type="submit" class="btn btn-success">Kaydet</button>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
-            <!-- END-MODAL -->
+  
+<!-- END-MODAL -->
 
          <%- include("partials/_footer.ejs") %> 
 
@@ -94,7 +100,51 @@
     </a>
 
    <%- include("partials/_script.ejs") %>
+<!-- CKEditor'i Modal içindeki textarea'ya bağla -->
+<script>
 
+  let editorInstance;
+
+  const modal = document.getElementById('addAbout');
+
+  modal.addEventListener('shown.bs.modal', function () {
+    if (!editorInstance) {
+      ClassicEditor
+        .create(document.querySelector('#editor'))
+        .then(editor => {
+          editorInstance = editor;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  });
+
+  modal.addEventListener('hidden.bs.modal', function () {
+    if (editorInstance) {
+      editorInstance.destroy()
+        .then(() => {
+          editorInstance = null;
+
+          // Destroy old editor HTML ve textarea'yı geri getir
+          const editorContainer = document.querySelector('.ck-editor');
+          if (editorContainer) {
+            editorContainer.remove();
+            const newTextarea = document.createElement('textarea');
+            newTextarea.name = 'aboutText';
+            newTextarea.id = 'editor';
+            newTextarea.rows = 10;
+            document.querySelector('.modal-body').appendChild(newTextarea);
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  });
+
+
+</script>
 
 
 </body>

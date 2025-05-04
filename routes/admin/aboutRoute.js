@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.get("/", aboutController.getAboutText);
 router.post("/", aboutController.addAboutText);
+router.post("/update", aboutController.updateAboutText);
 
 export default router;
