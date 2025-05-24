@@ -1,4 +1,3 @@
-import { response } from "express";
 import Project from "../../models/Project.js";
 
 //proje sayfası
@@ -42,7 +41,7 @@ const deleteProject = async (req, res) => {
   const project_id = req.params.id;
   const project = await Project.findOneAndDelete(project_id);
   if (!project) {
-     res.status(500).send({
+     res.status(404).send({
       error: "Böyle Bir Proje Bulunamadı ",
     });
   }

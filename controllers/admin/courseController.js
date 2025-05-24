@@ -24,4 +24,17 @@ const addVideo = async (req, res) => {
   }
 };
 
-export default { getAllVideo, addVideo};
+const deleteVideo = async (req, res) => {
+  try {
+    const video_id = req.params.id;
+    const deletedVideo = await Course.findByIdAndDelete(video_id);
+    if (!deletedVideo) {
+       return res.status(404).send({ error: "Böyle bir video bulunamadı!" });
+    }
+    res.status(200).redirect("/admin/course");
+  } catch (error) {
+    res.status(500).send("server error", error);
+  }
+};
+
+export default { getAllVideo, addVideo, deleteVideo };

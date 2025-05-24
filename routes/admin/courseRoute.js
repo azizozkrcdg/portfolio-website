@@ -8,6 +8,7 @@ router.get("/add", (req, res) => {
     res.render("admin/add-video");
 });
 router.post("/add", courseController.addVideo);
+router.delete("/:id", courseController.deleteVideo);
 
 
 export default router;

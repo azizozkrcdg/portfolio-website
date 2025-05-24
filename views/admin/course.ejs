@@ -33,28 +33,37 @@
                   <!-- Content Column -->
                   <div class="col-lg-12 mb-4">
 
-  <div class="container py-4">
-    <h1 class="mb-4 text-center">Eğitim Videoları</h1>
+                    <div class="container py-4">
+                      <h1 class="text-center">Eğitim Videoları</h1>
 
-    <div class="row g-4">
-      <% videos.forEach(function(video) { %>
-        <div class="col-md-4">
-          <div class="card video-card shadow-sm h-100">
-            <iframe src="https://www.youtube.com/embed/<%= video.youtube_id %>" 
-              title="<%= video.title %>" frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen></iframe>
+                      <div class="row g-4 mt-5">
+                        <% videos.forEach(function(video) { %>
+                          <div class="col-md-4">
+                            <div class="card video-card shadow-sm h-100">
+                              <iframe src="https://www.youtube.com/embed/<%= video.youtube_id %>"
+                                title="<%= video.title %>" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
 
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title"><%= video.title %></h5>
-              <p class="card-text flex-grow-1"><%= video.description || 'Açıklama yok' %></p>
-              <!-- İstersen altına buton da ekleyebilirsin -->
-            </div>
-          </div>
-        </div>
-      <% }) %>
-    </div>
-  </div>
+                              <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">
+                                  <%= video.title %>
+                                </h5>
+                                <p class="card-text flex-grow-1">
+                                  <%= video.description || 'Açıklama yok' %>
+                                </p>
+                                <!-- silme butonu -->
+                                <form action="/admin/course/<%= video.id %>?_method=DELETE" method="POST">
+                                  <button type="submit" class="bi btn btn-sm btn-outline-danger ">
+                                    <i class="bi bi-trash"></i>
+                                  </button>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                          <% }) %>
+                      </div>
+                    </div>
 
 
                   </div>
