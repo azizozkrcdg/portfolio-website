@@ -60,21 +60,21 @@ const deleteAdmin = async (req, res) => {
   }
 };
 
-const adminPasswordReset = async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    const admin = await Admin.findOne({ username });
-    if (!admin) {
-      return res.status(404).send("Admin bulunamadı");
-    }
-    admin.password = password;
-    await admin.save();
-    res.status(200).render("admin/index", {admin})
-  } catch (error) {
-    console.error("Admin şifre sıfırlama hatası:", error);
-    res
-      .status(500)
-      .send("Admin şifre sıfırlama işlemi sırasında bir hata oluştu");
-  }
-};
-export default { getLoginPage, login, createAdmin, logout, deleteAdmin, adminPasswordReset };
+// const adminPasswordReset = async (req, res) => {
+//   try {
+//     const { username, password } = req.body;
+//     const admin = await Admin.findOne({ username });
+//     if (!admin) {
+//       return res.status(404).send("Admin bulunamadı");
+//     }
+//     admin.password = password;
+//     await admin.save();
+//     res.status(200).render("admin/index", {admin})
+//   } catch (error) {
+//     console.error("Admin şifre sıfırlama hatası:", error);
+//     res
+//       .status(500)
+//       .send("Admin şifre sıfırlama işlemi sırasında bir hata oluştu");
+//   }
+// };
+export default { getLoginPage, login, createAdmin, logout, deleteAdmin };

@@ -36,6 +36,7 @@ const createProject = async (req, res) => {
   }
 };
 
+// proje sil
 const deleteProject = async (req, res) => {
  try {
   const project_id = req.params.id;
@@ -51,4 +52,23 @@ const deleteProject = async (req, res) => {
  }
 };
 
-export default { getProjectsPage, createProject, deleteProject};
+const updateProject = async (req, res) => {
+  try {
+    const { projectName, projectUrl, projectDescription } = req.body;
+    const project_id = req.params.id;
+    const project = await Project.findByIdAndUpdate(project_id, {
+      projectName,
+      projectUrl,
+      projectDescription,
+    });
+    if (!project) {
+      return res.status(500).send("Böyle bir proje bulunamadı!");
+    }
+    res.status(200).redirect("/admin/projects");
+  } catch (error) {
+    console.log("HATA: ", error);
+    res.status(500).send({ error: "Server error!" });
+  }
+};  
+
+export default { getProjectsPage, createProject, deleteProject, updateProject};

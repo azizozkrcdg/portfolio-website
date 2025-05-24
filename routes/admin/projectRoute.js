@@ -3,7 +3,8 @@ import express from "express";
 
 const router = express.Router();
 
-router.route("/").get(projectController.getProjectsPage);
-router.route("/").post(projectController.createProject);
-router.route("/:id").post(projectController.deleteProject);
+router.get("/", projectController.getProjectsPage);
+router.post("/", projectController.createProject);
+router.delete("/:id", projectController.deleteProject);
+router.post("/update/:id", projectController.updateProject);
 export default router;

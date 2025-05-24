@@ -27,7 +27,7 @@
                         <!-- Content Column -->
                         <div class="col-lg-12 mb-4">
 
-                            <!-- Project Card Example -->
+                           
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                             
@@ -59,35 +59,35 @@
                                             <td><%= projects[i].projectName %></td>
                                             <td><a href="https://github.com/azizozkrcdg"><%= projects[i].projectUrl %></a></td>
                                             <td><%= projects[i].projectDescription %></td>
-                                            
                                             <td>
-                                                <form action="/admin/projects/<%=projects[i].id %>" method="post">
-                                                    <button type="submit" class="bi btn btn-sm btn-outline-danger">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </form>
+                                               <div class="d-flex ">
+                                                    <div class="col-md-6">                                                        
+                                                            <a data-target="#updateProject" data-toggle="modal" class="btn btn-sm btn-outline-success float-right">
+                                                                <i class="bi bi-pencil-square"></i>    
+                                                            </a>    
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <form action="/admin/projects/<%=projects[i].id %>?_method=DELETE" method="POST">
+                                                            <button type="submit" class="bi btn btn-sm btn-outline-danger">
+                                                                <i class="bi bi-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                               </div>
                                             </td>
                                         </tr>
                                     </tbody>
                                     <% } %>
                                 </table>
                             </div>
-
                         </div>
-
-
-
-
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
-
-                <!-- MODAL -->
+                <!-- proje ekleme modal -->
 
                 <div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -132,6 +132,8 @@
                 </div>
                 <!-- END-MODAL -->
 
+                <!-- proje güncelleme modal> -->
+                 
 
          <%- include("partials/_footer.ejs") %> 
 
