@@ -7,6 +7,7 @@ import socialMediaRoute from "./socialMediaRoute.js";
 import resumeRoute from "./resumeRoute.js";
 import isAuthenticated from "../../middlewares/auth.js";
 import blogRoute from "./blogRoute.js";
+import courseRoute from "./courseRoute.js";
 
 
 
@@ -21,5 +22,6 @@ router.use("/certificate", certificateRoute);
 router.use("/socialMedia", socialMediaRoute);
 router.use("/resume", resumeRoute);
 router.use("/blogs", blogRoute);
+router.use("/course", courseRoute);
 
 export default router;
