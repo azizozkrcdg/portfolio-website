@@ -34,7 +34,7 @@ app.use("/", siteRoute);
 
 const port = process.env.PORT;
 
-app.listen(port, '0.0.0.0',() => {
+app.listen(port, () => {
   console.log(`Server ${port} portunda çalıştı.`);
   connectDB();
 });
